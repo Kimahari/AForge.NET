@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>AForge</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>AForge.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Core\Delegates.cs" Link="Delegates.cs" />
+    <Compile Include="..\..\Core\DoublePoint.cs" Link="DoublePoint.cs" />
+    <Compile Include="..\..\Core\DoubleRange.cs" Link="DoubleRange.cs" />
+    <Compile Include="..\..\Core\EventArgs.cs" Link="EventArgs.cs" />
+    <Compile Include="..\..\Core\Exceptions.cs" Link="Exceptions.cs" />
+    <Compile Include="..\..\Core\IntPoint.cs" Link="IntPoint.cs" />
+    <Compile Include="..\..\Core\IntRange.cs" Link="IntRange.cs" />
+    <Compile Include="..\..\Core\Parallel.cs" Link="Parallel.cs" />
+    <Compile Include="..\..\Core\Point.cs" Link="Point.cs" />
+    <Compile Include="..\..\Core\PolishExpression.cs" Link="PolishExpression.cs" />
+    <Compile Include="..\..\Core\Range.cs" Link="Range.cs" />
+    <Compile Include="..\..\Core\SystemTools.cs" Link="SystemTools.cs" />
+    <Compile Include="..\..\Core\ThreadSafeRandom.cs" Link="ThreadSafeRandom.cs" />
+  </ItemGroup>
+
+</Project>

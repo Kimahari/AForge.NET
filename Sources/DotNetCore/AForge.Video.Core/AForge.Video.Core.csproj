@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>AForge.Video</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>AForge.Video.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Video\AsyncVideoSource.cs" Link="AsyncVideoSource.cs" />
+    <Compile Include="..\..\Video\ByteArrayUtils.cs" Link="ByteArrayUtils.cs" />
+    <Compile Include="..\..\Video\Exceptions.cs" Link="Exceptions.cs" />
+    <Compile Include="..\..\Video\IVideoSource.cs" Link="IVideoSource.cs" />
+    <Compile Include="..\..\Video\JPEGStream.cs" Link="JPEGStream.cs" />
+    <Compile Include="..\..\Video\MJPEGStream.cs" Link="MJPEGStream.cs" />
+    <Compile Include="..\..\Video\ScreenCaptureStream.cs" Link="ScreenCaptureStream.cs" />
+    <Compile Include="..\..\Video\VideoEvents.cs" Link="VideoEvents.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AForge.Core\AForge.Core.csproj" />
+  </ItemGroup>
+
+</Project>

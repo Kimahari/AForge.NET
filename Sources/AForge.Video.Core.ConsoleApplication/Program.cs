@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace AForge.Video.Core.ConsoleApplication {
@@ -10,7 +11,7 @@ namespace AForge.Video.Core.ConsoleApplication {
             while (true) {
                 Console.WriteLine("Hello World!");
 
-                var ipCam = @"http://192.168.1.101:8080/video";
+                var ipCam = @"http://10.0.75.1:30000/axis-cgi/mjpg/video.cgi";
 
                 IVideoSource _videoSource = new MJPEGStream(ipCam) {
                     DisableStreamTimeout = true
@@ -108,8 +109,82 @@ namespace AForge.Video.Core.ConsoleApplication {
             }
         }
 
+        private static string[] _AsciiChars = { "#", "#", "@", "%", "=", "+", "*", ":", "-", ".", "&nbsp;" };
+
+        private static string ConvertToAscii(Bitmap image) {
+
+            Boolean toggle = false;
+
+            StringBuilder sb = new StringBuilder();
+
+
+
+            for (int h = 0; h < image.Height; h++) {
+
+                for (int w = 0; w < image.Width; w++) {
+
+                    Color pixelColor = image.GetPixel(w, h);
+
+                    //Average out the RGB components to find the Gray Color
+
+                    int red = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
+
+                    int green = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
+
+                    int blue = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
+
+                    Color grayColor = Color.FromArgb(red, green, blue);
+
+
+
+                    //Use the toggle flag to minimize height-wise stretch
+
+                    if (!toggle) {
+
+                        int index = (grayColor.R * 10) / 255;
+
+                        sb.Append(_AsciiChars[index]);
+
+                    }
+
+                }
+
+                if (!toggle) {
+
+                    sb.Append("<BR>");
+
+                    toggle = true;
+
+                } else {
+
+                    toggle = false;
+
+                }
+
+            }
+
+            return sb.ToString();
+
+        }
+
+        private static Bitmap GetReSizedImage(Bitmap inputBitmap, int asciiWidth) {
+
+            int asciiHeight = 0;
+
+            //Calculate the new Height of the image from its width
+            asciiHeight = (int) Math.Ceiling((double) inputBitmap.Height * asciiWidth / inputBitmap.Width);
+            //Create a new Bitmap and define its resolution
+            Bitmap result = new Bitmap(asciiWidth, asciiHeight);
+            Graphics g = Graphics.FromImage((Image) result);
+            //The interpolation mode produces high quality images
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            g.DrawImage(inputBitmap, 0, 0, asciiWidth, asciiHeight);
+            g.Dispose();
+            return result;
+        }
+
         public static void ConsoleWriteImage(Bitmap source) {
-            int sMax = 20;
+            int sMax = 50;
             int top = 0;
             int left = 0;
             decimal percent = Math.Min(decimal.Divide(sMax, source.Width), decimal.Divide(sMax, source.Height));

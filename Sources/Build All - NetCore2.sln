@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AForge.Core", "DotNetCore\A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AForge.Video.Core", "DotNetCore\AForge.Video.Core\AForge.Video.Core.csproj", "{5B7F7C15-CFBB-4061-B5E5-EE89462EB998}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AForge.Video.Core.ConsoleApplication", "AForge.Video.Core.ConsoleApplication\AForge.Video.Core.ConsoleApplication.csproj", "{AEFE9831-6B07-410C-8D88-C95E35FA813E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge.Math.Core", "DotNetCore\AForge.Math.Core\AForge.Math.Core.csproj", "{39D83022-CE28-41C0-A688-E144D2FAAEDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge.Imaging.Core", "DotNetCore\AForge.Imaging.Core\AForge.Imaging.Core.csproj", "{7F2E6383-5625-464A-AD0E-52B94968CE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AForge.Vision.Core", "DotNetCore\AForge.Vision.Core\AForge.Vision.Core.csproj", "{8D7C044A-59B0-466D-A4CB-9376253523B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AForge.Video.Core.App", "AForge.Video.Core.App\AForge.Video.Core.App.csproj", "{0F960F12-7743-4D2D-B77F-17E4E6FD206E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +29,22 @@ Global
 		{5B7F7C15-CFBB-4061-B5E5-EE89462EB998}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B7F7C15-CFBB-4061-B5E5-EE89462EB998}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B7F7C15-CFBB-4061-B5E5-EE89462EB998}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEFE9831-6B07-410C-8D88-C95E35FA813E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEFE9831-6B07-410C-8D88-C95E35FA813E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEFE9831-6B07-410C-8D88-C95E35FA813E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEFE9831-6B07-410C-8D88-C95E35FA813E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39D83022-CE28-41C0-A688-E144D2FAAEDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39D83022-CE28-41C0-A688-E144D2FAAEDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39D83022-CE28-41C0-A688-E144D2FAAEDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39D83022-CE28-41C0-A688-E144D2FAAEDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F2E6383-5625-464A-AD0E-52B94968CE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F2E6383-5625-464A-AD0E-52B94968CE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F2E6383-5625-464A-AD0E-52B94968CE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F2E6383-5625-464A-AD0E-52B94968CE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D7C044A-59B0-466D-A4CB-9376253523B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D7C044A-59B0-466D-A4CB-9376253523B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D7C044A-59B0-466D-A4CB-9376253523B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D7C044A-59B0-466D-A4CB-9376253523B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F960F12-7743-4D2D-B77F-17E4E6FD206E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F960F12-7743-4D2D-B77F-17E4E6FD206E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F960F12-7743-4D2D-B77F-17E4E6FD206E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F960F12-7743-4D2D-B77F-17E4E6FD206E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

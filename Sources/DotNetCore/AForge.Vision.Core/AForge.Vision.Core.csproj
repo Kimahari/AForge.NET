@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Vision\Motion\BlobCountingObjectsProcessing.cs" Link="Motion\BlobCountingObjectsProcessing.cs" />
+    <Compile Include="..\..\Vision\Motion\CustomFrameDifferenceDetector.cs" Link="Motion\CustomFrameDifferenceDetector.cs" />
+    <Compile Include="..\..\Vision\Motion\GridMotionAreaProcessing.cs" Link="Motion\GridMotionAreaProcessing.cs" />
+    <Compile Include="..\..\Vision\Motion\IMotionDetector.cs" Link="Motion\IMotionDetector.cs" />
+    <Compile Include="..\..\Vision\Motion\IMotionProcessing.cs" Link="Motion\IMotionProcessing.cs" />
+    <Compile Include="..\..\Vision\Motion\MotionAreaHighlighting.cs" Link="Motion\MotionAreaHighlighting.cs" />
+    <Compile Include="..\..\Vision\Motion\MotionBorderHighlighting.cs" Link="Motion\MotionBorderHighlighting.cs" />
+    <Compile Include="..\..\Vision\Motion\MotionDetector.cs" Link="Motion\MotionDetector.cs" />
+    <Compile Include="..\..\Vision\Motion\SimpleBackgroundModelingDetector.cs" Link="Motion\SimpleBackgroundModelingDetector.cs" />
+    <Compile Include="..\..\Vision\Motion\TwoFramesDifferenceDetector.cs" Link="Motion\TwoFramesDifferenceDetector.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Motion\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AForge.Core\AForge.Core.csproj" />
+    <ProjectReference Include="..\AForge.Imaging.Core\AForge.Imaging.Core.csproj" />
+  </ItemGroup>
+
+</Project>

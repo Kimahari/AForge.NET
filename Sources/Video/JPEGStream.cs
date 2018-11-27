@@ -6,18 +6,17 @@
 // contacts@aforgenet.com
 //
 
-namespace AForge.Video
-{
+namespace AForge.Video {
     using System;
-	using System.Drawing;
-	using System.IO;
+    using System.Drawing;
+    using System.IO;
     using System.Text;
     using System.Threading;
-	using System.Net;
+    using System.Net;
     using System.Security;
 
-	/// <summary>
-	/// JPEG video source.
+    /// <summary>
+    /// JPEG video source.
     /// </summary>
     /// 
     /// <remarks><para>The video source constantly downloads JPEG files from the specified URL.</para>
@@ -58,37 +57,36 @@ namespace AForge.Video
     /// </code>
     /// </remarks>
     /// 
-	public class JPEGStream : IVideoSource
-	{
+    public class JPEGStream : IVideoSource {
         // URL for JPEG files
-		private string source;
+        private string source;
         // login and password for HTTP authentication
-		private string login = null;
-		private string password = null;
+        private string login = null;
+        private string password = null;
         // proxy information
         private IWebProxy proxy = null;
         // received frames count
-		private int framesReceived;
+        private int framesReceived;
         // recieved byte count
-		private long bytesReceived;
+        private long bytesReceived;
         // use separate HTTP connection group or use default
-		private bool useSeparateConnectionGroup = false;
+        private bool useSeparateConnectionGroup = false;
         // prevent cashing or not
-		private bool preventCaching = true;
+        private bool preventCaching = true;
         // frame interval in milliseconds
-		private int frameInterval = 0;
+        private int frameInterval = 0;
         // timeout value for web request
         private int requestTimeout = 10000;
         // if we should use basic authentication when connecting to the video source
         private bool forceBasicAuthentication = false;
 
         // buffer size used to download JPEG image
-		private const int bufferSize = 1024 * 1024;
+        private const int bufferSize = 1024 * 1024;
         // size of portion to read at once
-		private const int readSize = 1024;		
+        private const int readSize = 1024;
 
-		private Thread thread = null;
-		private ManualResetEvent stopEvent = null;
+        private Thread thread = null;
+        private ManualResetEvent stopEvent = null;
 
         /// <summary>
         /// New frame event.
@@ -127,11 +125,10 @@ namespace AForge.Video
         /// 
         /// <remarks>The property indicates to open web request in separate connection group.</remarks>
         /// 
-		public bool SeparateConnectionGroup
-		{
-			get { return useSeparateConnectionGroup; }
-			set { useSeparateConnectionGroup = value; }
-		}
+		public bool SeparateConnectionGroup {
+            get { return useSeparateConnectionGroup; }
+            set { useSeparateConnectionGroup = value; }
+        }
 
         /// <summary>
         /// Use or not caching.
@@ -140,11 +137,10 @@ namespace AForge.Video
         /// <remarks>If the property is set to <b>true</b>, then a fake random parameter will be added
         /// to URL to prevent caching. It's required for clients, who are behind proxy server.</remarks>
         /// 
-		public bool PreventCaching
-		{
-			get { return preventCaching; }
-			set { preventCaching = value; }
-		}
+		public bool PreventCaching {
+            get { return preventCaching; }
+            set { preventCaching = value; }
+        }
 
         /// <summary>
         /// Frame interval.
@@ -154,11 +150,10 @@ namespace AForge.Video
         /// set to 100, then the desired frame rate will be 10 frames per second. Default value is 0 -
         /// get new frames as fast as possible.</remarks>
         /// 
-		public int FrameInterval
-		{
-			get { return frameInterval; }
-			set { frameInterval = value; }
-		}
+		public int FrameInterval {
+            get { return frameInterval; }
+            set { frameInterval = value; }
+        }
 
         /// <summary>
         /// Video source.
@@ -166,11 +161,10 @@ namespace AForge.Video
         /// 
         /// <remarks>URL, which provides JPEG files.</remarks>
         /// 
-        public virtual string Source
-		{
-			get { return source; }
-			set { source = value; }
-		}
+        public virtual string Source {
+            get { return source; }
+            set { source = value; }
+        }
 
         /// <summary>
         /// Login value.
@@ -178,11 +172,10 @@ namespace AForge.Video
         /// 
         /// <remarks>Login required to access video source.</remarks>
         /// 
-		public string Login
-		{
-			get { return login; }
-			set { login = value; }
-		}
+		public string Login {
+            get { return login; }
+            set { login = value; }
+        }
 
         /// <summary>
         /// Password value.
@@ -190,11 +183,10 @@ namespace AForge.Video
         /// 
         /// <remarks>Password required to access video source.</remarks>
         /// 
-        public string Password
-		{
-			get { return password; }
-			set { password = value; }
-		}
+        public string Password {
+            get { return password; }
+            set { password = value; }
+        }
 
         /// <summary>
         /// Gets or sets proxy information for the request.
@@ -209,8 +201,7 @@ namespace AForge.Video
         /// in Internet Explorer, the request is sent directly to the server.
         /// </para></remarks>
         /// 
-        public IWebProxy Proxy
-        {
+        public IWebProxy Proxy {
             get { return proxy; }
             set { proxy = value; }
         }
@@ -223,15 +214,13 @@ namespace AForge.Video
         /// access to the property.
         /// </remarks>
         /// 
-        public int FramesReceived
-		{
-			get
-			{
-				int frames = framesReceived;
-				framesReceived = 0;
-				return frames;
-			}
-		}
+        public int FramesReceived {
+            get {
+                int frames = framesReceived;
+                framesReceived = 0;
+                return frames;
+            }
+        }
 
         /// <summary>
         /// Received bytes count.
@@ -241,15 +230,13 @@ namespace AForge.Video
         /// access to the property.
         /// </remarks>
         /// 
-        public long BytesReceived
-		{
-			get
-			{
-				long bytes = bytesReceived;
-				bytesReceived = 0;
-				return bytes;
-			}
-		}
+        public long BytesReceived {
+            get {
+                long bytes = bytesReceived;
+                bytesReceived = 0;
+                return bytes;
+            }
+        }
 
         /// <summary>
         /// Request timeout value.
@@ -259,8 +246,7 @@ namespace AForge.Video
         /// 
         /// <para>Default value is set <b>10000</b> milliseconds.</para></remarks>
         /// 
-        public int RequestTimeout
-        {
+        public int RequestTimeout {
             get { return requestTimeout; }
             set { requestTimeout = value; }
         }
@@ -271,22 +257,19 @@ namespace AForge.Video
         /// 
         /// <remarks>Current state of video source object - running or not.</remarks>
         /// 
-        public bool IsRunning
-		{
-			get
-			{
-				if ( thread != null )
-				{
+        public bool IsRunning {
+            get {
+                if (thread != null) {
                     // check thread status
-					if ( thread.Join( 0 ) == false )
-						return true;
+                    if (thread.Join(0) == false)
+                        return true;
 
-					// the thread is not running, free resources
-					Free( );
-				}
-				return false;
-			}
-		}
+                    // the thread is not running, free resources
+                    Free();
+                }
+                return false;
+            }
+        }
 
         /// <summary>
         /// Force using of basic authentication when connecting to the video source.
@@ -300,8 +283,7 @@ namespace AForge.Video
         /// <para>Default value is set to <see langword="false"/>.</para>
         /// </remarks>
         /// 
-        public bool ForceBasicAuthentication
-        {
+        public bool ForceBasicAuthentication {
             get { return forceBasicAuthentication; }
             set { forceBasicAuthentication = value; }
         }
@@ -310,7 +292,7 @@ namespace AForge.Video
         /// Initializes a new instance of the <see cref="JPEGStream"/> class.
         /// </summary>
         /// 
-        public JPEGStream( ) { }
+        public JPEGStream() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="JPEGStream"/> class.
@@ -318,8 +300,7 @@ namespace AForge.Video
         /// 
         /// <param name="source">URL, which provides JPEG files.</param>
         /// 
-        public JPEGStream( string source )
-        {
+        public JPEGStream(string source) {
             this.source = source;
         }
 
@@ -333,26 +314,24 @@ namespace AForge.Video
         /// 
         /// <exception cref="ArgumentException">Video source is not specified.</exception>
         /// 
-        public void Start( )
-		{
-			if ( !IsRunning )
-			{
+        public void Start() {
+            if (!IsRunning) {
                 // check source
-                if ( ( source == null ) || ( source == string.Empty ) )
-                    throw new ArgumentException( "Video source is not specified." );
+                if ((source == null) || (source == string.Empty))
+                    throw new ArgumentException("Video source is not specified.");
 
-				framesReceived = 0;
-				bytesReceived = 0;
+                framesReceived = 0;
+                bytesReceived = 0;
 
-				// create events
-				stopEvent = new ManualResetEvent( false );
+                // create events
+                stopEvent = new ManualResetEvent(false);
 
                 // create and start new thread
-				thread = new Thread( new ThreadStart( WorkerThread ) );
-				thread.Name = source; // mainly for debugging
-				thread.Start( );
-			}
-		}
+                thread = new Thread(new ThreadStart(WorkerThread));
+                thread.Name = source; // mainly for debugging
+                thread.Start();
+            }
+        }
 
         /// <summary>
         /// Signal video source to stop its work.
@@ -361,15 +340,13 @@ namespace AForge.Video
         /// <remarks>Signals video source to stop its background thread, stop to
         /// provide new frames and free resources.</remarks>
         /// 
-        public void SignalToStop( )
-		{
-			// stop thread
-			if ( thread != null )
-			{
-				// signal to stop
-				stopEvent.Set( );
-			}
-		}
+        public void SignalToStop() {
+            // stop thread
+            if (thread != null) {
+                // signal to stop
+                stopEvent.Set();
+            }
+        }
 
         /// <summary>
         /// Wait for video source has stopped.
@@ -378,16 +355,14 @@ namespace AForge.Video
         /// <remarks>Waits for source stopping after it was signalled to stop using
         /// <see cref="SignalToStop"/> method.</remarks>
         /// 
-        public void WaitForStop( )
-		{
-			if ( thread != null )
-			{
-				// wait for thread stop
-				thread.Join( );
+        public void WaitForStop() {
+            if (thread != null) {
+                // wait for thread stop
+                thread.Join();
 
-				Free( );
-			}
-		}
+                Free();
+            }
+        }
 
         /// <summary>
         /// Stop video source.
@@ -401,187 +376,160 @@ namespace AForge.Video
         /// <see cref="WaitForStop">waiting</see> for background thread's completion.</note></para>
         /// </remarks>
         /// 
-        public void Stop( )
-		{
-			if ( this.IsRunning )
-			{
-                stopEvent.Set( );
-                thread.Abort( );
-				WaitForStop( );
-			}
-		}
+        public void Stop() {
+            if (this.IsRunning) {
+                stopEvent.Set();
+                thread.Abort();
+                WaitForStop();
+            }
+        }
 
         /// <summary>
         /// Free resource.
         /// </summary>
         /// 
-		private void Free( )
-		{
-			thread = null;
+		private void Free() {
+            thread = null;
 
-			// release events
-			stopEvent.Close( );
-			stopEvent = null;
-		}
+            // release events
+            stopEvent.Close();
+            stopEvent = null;
+        }
 
         // Worker thread
-        private void WorkerThread( )
-		{
+        private void WorkerThread() {
             // buffer to read stream
-			byte[] buffer = new byte[bufferSize];
+            byte[] buffer = new byte[bufferSize];
             // HTTP web request
-			HttpWebRequest request = null;
+            HttpWebRequest request = null;
             // web responce
-			WebResponse response = null;
+            WebResponse response = null;
             // stream for JPEG downloading
-			Stream stream = null;
+            Stream stream = null;
             // random generator to add fake parameter for cache preventing
-			Random rand = new Random( (int) DateTime.Now.Ticks );
+            Random rand = new Random((int) DateTime.Now.Ticks);
             // download start time and duration
-			DateTime start;
-			TimeSpan span;
+            DateTime start;
+            TimeSpan span;
 
-            while ( !stopEvent.WaitOne( 0, false ) )
-			{
-				int	read, total = 0;
+            while (!stopEvent.WaitOne(0, false)) {
+                int read, total = 0;
 
-				try
-				{
+                try {
                     // set dowbload start time
-					start = DateTime.Now;
+                    start = DateTime.Now;
 
-					// create request
-					if ( !preventCaching )
-					{
+                    // create request
+                    if (!preventCaching) {
                         // request without cache prevention
-                        request = (HttpWebRequest) WebRequest.Create( source );
-					}
-					else
-					{
+                        request = (HttpWebRequest) WebRequest.Create(source);
+                    } else {
                         // request with cache prevention
-                        request = (HttpWebRequest) WebRequest.Create( source + ( ( source.IndexOf( '?' ) == -1 ) ? '?' : '&' ) + "fake=" + rand.Next( ).ToString( ) );
-					}
+                        request = (HttpWebRequest) WebRequest.Create(source + ((source.IndexOf('?') == -1) ? '?' : '&') + "fake=" + rand.Next().ToString());
+                    }
 
                     // set proxy
-                    if ( proxy != null )
-                    {
+                    if (proxy != null) {
                         request.Proxy = proxy;
                     }
 
                     // set timeout value for the request
                     request.Timeout = requestTimeout;
-					// set login and password
-					if ( ( login != null ) && ( password != null ) && ( login != string.Empty ) )
-                        request.Credentials = new NetworkCredential( login, password );
-					// set connection group name
-					if ( useSeparateConnectionGroup )
-                        request.ConnectionGroupName = GetHashCode( ).ToString( );
+                    // set login and password
+                    if ((login != null) && (password != null) && (login != string.Empty))
+                        request.Credentials = new NetworkCredential(login, password);
+                    // set connection group name
+                    if (useSeparateConnectionGroup)
+                        request.ConnectionGroupName = GetHashCode().ToString();
                     // force basic authentication through extra headers if required
-                    if ( forceBasicAuthentication )
-                    {
-                        string authInfo = string.Format( "{0}:{1}", login, password );
-                        authInfo = Convert.ToBase64String( Encoding.Default.GetBytes( authInfo ) );
+                    if (forceBasicAuthentication) {
+                        string authInfo = string.Format("{0}:{1}", login, password);
+                        authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                         request.Headers["Authorization"] = "Basic " + authInfo;
                     }
-					// get response
-                    response = request.GetResponse( );
-					// get response stream
-                    stream = response.GetResponseStream( );
+                    // get response
+                    response = request.GetResponse();
+                    // get response stream
+                    stream = response.GetResponseStream();
                     stream.ReadTimeout = requestTimeout;
 
-					// loop
-					while ( !stopEvent.WaitOne( 0, false ) )
-					{
-						// check total read
-						if ( total > bufferSize - readSize )
-						{
-							total = 0;
-						}
+                    // loop
+                    while (!stopEvent.WaitOne(0, false)) {
+                        // check total read
+                        if (total > bufferSize - readSize) {
+                            total = 0;
+                        }
 
-						// read next portion from stream
-						if ( ( read = stream.Read( buffer, total, readSize ) ) == 0 )
-							break;
-
-						total += read;
-
-						// increment received bytes counter
-						bytesReceived += read;
-					}
-
-					if ( !stopEvent.WaitOne( 0, false ) )
-					{
-						// increment frames counter
-						framesReceived++;
-
-						// provide new image to clients
-						if ( NewFrame != null )
-						{
-							Bitmap bitmap = (Bitmap) Bitmap.FromStream( new MemoryStream( buffer, 0, total ) );
-							// notify client
-                            NewFrame( this, new NewFrameEventArgs( bitmap ) );
-							// release the image
-                            bitmap.Dispose( );
-                            bitmap = null;
-						}
-					}
-
-					// wait for a while ?
-					if ( frameInterval > 0 )
-					{
-						// get download duration
-						span = DateTime.Now.Subtract( start );
-						// miliseconds to sleep
-						int msec = frameInterval - (int) span.TotalMilliseconds;
-
-                        if ( ( msec > 0 ) && ( stopEvent.WaitOne( msec, false ) ) )
+                        // read next portion from stream
+                        if ((read = stream.Read(buffer, total, readSize)) == 0)
                             break;
-					}
-				}
-                catch ( ThreadAbortException )
-                {
+
+                        total += read;
+
+                        // increment received bytes counter
+                        bytesReceived += read;
+                    }
+
+                    if (!stopEvent.WaitOne(0, false)) {
+                        // increment frames counter
+                        framesReceived++;
+
+                        // provide new image to clients
+                        if (NewFrame != null) {
+                            Bitmap bitmap = (Bitmap) Bitmap.FromStream(new MemoryStream(buffer, 0, total));
+                            // notify client
+                            NewFrame(this, new NewFrameEventArgs(bitmap));
+                            // release the image
+                            bitmap.Dispose();
+                            bitmap = null;
+                        }
+                    }
+
+                    // wait for a while ?
+                    if (frameInterval > 0) {
+                        // get download duration
+                        span = DateTime.Now.Subtract(start);
+                        // miliseconds to sleep
+                        int msec = frameInterval - (int) span.TotalMilliseconds;
+
+                        if ((msec > 0) && (stopEvent.WaitOne(msec, false)))
+                            break;
+                    }
+                } catch (ThreadAbortException) {
                     break;
-                }
-                catch ( Exception exception )
-				{
+                } catch (Exception exception) {
                     // provide information to clients
-                    if ( VideoSourceError != null )
-                    {
-                        VideoSourceError( this, new VideoSourceErrorEventArgs( exception.Message ) );
+                    if (VideoSourceError != null) {
+                        VideoSourceError(this, new VideoSourceErrorEventArgs(exception.Message));
                     }
                     // wait for a while before the next try
-                    Thread.Sleep( 250 );
-                }
-				finally
-				{
-					// abort request
-					if ( request != null)
-					{
-                        request.Abort( );
+                    Thread.Sleep(250);
+                } finally {
+                    // abort request
+                    if (request != null) {
+                        request.Abort();
                         request = null;
-					}
-					// close response stream
-					if ( stream != null )
-					{
-						stream.Close( );
-						stream = null;
-					}
-					// close response
-					if ( response != null )
-					{
-                        response.Close( );
+                    }
+                    // close response stream
+                    if (stream != null) {
+                        stream.Close();
+                        stream = null;
+                    }
+                    // close response
+                    if (response != null) {
+                        response.Close();
                         response = null;
-					}
-				}
+                    }
+                }
 
-				// need to stop ?
-				if ( stopEvent.WaitOne( 0, false ) )
-					break;
-			}
-
-            if ( PlayingFinished != null )
-            {
-                PlayingFinished( this, ReasonToFinishPlaying.StoppedByUser );
+                // need to stop ?
+                if (stopEvent.WaitOne(0, false))
+                    break;
             }
-		}
-	}
+
+            if (PlayingFinished != null) {
+                PlayingFinished(this, ReasonToFinishPlaying.StoppedByUser);
+            }
+        }
+    }
 }

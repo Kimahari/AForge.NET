@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Math\Complex.cs" Link="Complex.cs" />
+    <Compile Include="..\..\Math\ContinuousHistogram.cs" Link="ContinuousHistogram.cs" />
+    <Compile Include="..\..\Math\FourierTransform.cs" Link="FourierTransform.cs" />
+    <Compile Include="..\..\Math\Gaussian.cs" Link="Gaussian.cs" />
+    <Compile Include="..\..\Math\Geometry\ClosePointsMergingOptimizer.cs" Link="Geometry\ClosePointsMergingOptimizer.cs" />
+    <Compile Include="..\..\Math\Geometry\CoplanarPosit.cs" Link="Geometry\CoplanarPosit.cs" />
+    <Compile Include="..\..\Math\Geometry\FlatAnglesOptimizer.cs" Link="Geometry\FlatAnglesOptimizer.cs" />
+    <Compile Include="..\..\Math\Geometry\GeometryTools.cs" Link="Geometry\GeometryTools.cs" />
+    <Compile Include="..\..\Math\Geometry\GrahamConvexHull.cs" Link="Geometry\GrahamConvexHull.cs" />
+    <Compile Include="..\..\Math\Geometry\IConvexHullAlgorithm.cs" Link="Geometry\IConvexHullAlgorithm.cs" />
+    <Compile Include="..\..\Math\Geometry\IShapeOptimizer.cs" Link="Geometry\IShapeOptimizer.cs" />
+    <Compile Include="..\..\Math\Geometry\Line.cs" Link="Geometry\Line.cs" />
+    <Compile Include="..\..\Math\Geometry\LineSegment.cs" Link="Geometry\LineSegment.cs" />
+    <Compile Include="..\..\Math\Geometry\LineStraighteningOptimizer.cs" Link="Geometry\LineStraighteningOptimizer.cs" />
+    <Compile Include="..\..\Math\Geometry\PointsCloud.cs" Link="Geometry\PointsCloud.cs" />
+    <Compile Include="..\..\Math\Geometry\POSIT.cs" Link="Geometry\POSIT.cs" />
+    <Compile Include="..\..\Math\Geometry\ShapeType.cs" Link="Geometry\ShapeType.cs" />
+    <Compile Include="..\..\Math\Geometry\SimpleShapeChecker.cs" Link="Geometry\SimpleShapeChecker.cs" />
+    <Compile Include="..\..\Math\Histogram.cs" Link="Histogram.cs" />
+    <Compile Include="..\..\Math\Matrix3x3.cs" Link="Matrix3x3.cs" />
+    <Compile Include="..\..\Math\Matrix4x4.cs" Link="Matrix4x4.cs" />
+    <Compile Include="..\..\Math\Metrics\CosineDistance.cs" Link="Metrics\CosineDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\CosineSimilarity.cs" Link="Metrics\CosineSimilarity.cs" />
+    <Compile Include="..\..\Math\Metrics\EuclideanDistance.cs" Link="Metrics\EuclideanDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\EuclideanSimilarity.cs" Link="Metrics\EuclideanSimilarity.cs" />
+    <Compile Include="..\..\Math\Metrics\HammingDistance.cs" Link="Metrics\HammingDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\IDistance.cs" Link="Metrics\IDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\ISimilarity.cs" Link="Metrics\ISimilarity.cs" />
+    <Compile Include="..\..\Math\Metrics\JaccardDistance.cs" Link="Metrics\JaccardDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\ManhattanDistance.cs" Link="Metrics\ManhattanDistance.cs" />
+    <Compile Include="..\..\Math\Metrics\PearsonCorrelation.cs" Link="Metrics\PearsonCorrelation.cs" />
+    <Compile Include="..\..\Math\PerlinNoise.cs" Link="PerlinNoise.cs" />
+    <Compile Include="..\..\Math\Random\ExponentialGenerator.cs" Link="Random\ExponentialGenerator.cs" />
+    <Compile Include="..\..\Math\Random\GaussianGenerator.cs" Link="Random\GaussianGenerator.cs" />
+    <Compile Include="..\..\Math\Random\IRandomNumberGenerator.cs" Link="Random\IRandomNumberGenerator.cs" />
+    <Compile Include="..\..\Math\Random\StandardGenerator.cs" Link="Random\StandardGenerator.cs" />
+    <Compile Include="..\..\Math\Random\UniformGenerator.cs" Link="Random\UniformGenerator.cs" />
+    <Compile Include="..\..\Math\Random\UniformOneGenerator.cs" Link="Random\UniformOneGenerator.cs" />
+    <Compile Include="..\..\Math\Statistics.cs" Link="Statistics.cs" />
+    <Compile Include="..\..\Math\SVD.cs" Link="SVD.cs" />
+    <Compile Include="..\..\Math\Tools.cs" Link="Tools.cs" />
+    <Compile Include="..\..\Math\Vector3.cs" Link="Vector3.cs" />
+    <Compile Include="..\..\Math\Vector4.cs" Link="Vector4.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Geometry\" />
+    <Folder Include="Metrics\" />
+    <Folder Include="Random\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AForge.Core\AForge.Core.csproj" />
+  </ItemGroup>
+
+</Project>

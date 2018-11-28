@@ -2,10 +2,14 @@
 <ng-container *ngIf="feeds">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6 feed-container" *ngFor="let feed of feeds">
-                <img *ngIf="feed.visable" [attr.src]="feed.image" #image />
-                <p class="text-muted"> current fps ({{feed.fps}}) {{feed.address}}</p>
+            <div class="col-lg-4 col-md-6 feed-container" app-add-device (deviceAdded)="ngOnInit()">
+
             </div>
+
+            <div class="col-lg-4 col-md-6 feed-container" *ngFor="let feed of feeds" app-device-view [feed]="feed" >
+
+            </div>
+
         </div>
     </div>
 

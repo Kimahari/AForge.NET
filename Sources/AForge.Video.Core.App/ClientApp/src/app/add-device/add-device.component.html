@@ -1,0 +1,32 @@
+<legend>Create New Feed</legend>
+<div class="form-group">
+    <label class="control-label" for="feedType">Feed Type</label>
+    <select class="form-control" id="feedType" [(ngModel)]="feedType">
+        <option value="-1">Select feed type</option>
+        <option value="0">IP Cam</option>
+        <option value="1">Installed Device</option>
+    </select>
+</div>
+
+<ng-container [ngSwitch]="feedType">
+    <div class="form-group" *ngSwitchCase="0">
+        <label class="control-label" for="camAddress">Cam address</label>
+        <input class="form-control" [(ngModel)]="deviceRequest.address" id="camAddress" />
+    </div>
+    <ng-container *ngSwitchCase="1">
+        <div class="form-group">
+            <label class="control-label" for="deviceItem">Cam address</label>
+            <select class="form-control" id="deviceItem" [(ngModel)]="selectedDevice">
+                <option value="-1">Select device</option>
+                <ng-container *ngIf="devices">
+                    <option *ngFor="let device of devices" [attr.value]="device.id">{{device.name}}</option>
+                </ng-container>
+            </select>
+        </div>
+    </ng-container>
+    <ng-container *ngSwitchDefault>Please Select a provider ...</ng-container>
+</ng-container>
+
+<div class="form-group">
+    <button [disabled]="!valid" class="btn btn-primary" (click)="onAddDevice()">Add Device</button>
+</div>

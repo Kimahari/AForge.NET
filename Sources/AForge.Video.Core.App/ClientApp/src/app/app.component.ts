@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IFeed } from '../classes/feed';
+import { IFeed, IDevice, IDeviceRequest } from '../classes/feed';
 
 import * as signalR from "@aspnet/signalr";
 import { DomSanitizer } from '@angular/platform-browser';
@@ -11,7 +11,6 @@ import { DomSanitizer } from '@angular/platform-browser';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
     title = 'app';
     feeds: IFeed[];
 
@@ -29,6 +28,13 @@ export class AppComponent implements OnInit {
         connection.on('fpsUpdate', (oo) => {
             const related = this.feeds.find(ii => ii.id == oo.id);
             related.fps = oo.frameRate;
+        });
+
+        connection.on('deviceStatus', (oo) => {
+            const related = this.feeds.find(ii => ii.id == oo.id);
+            console.debug('device status',oo);
+            related.status = oo.status;
+            related.enabled = oo.enabled;
         });
 
         connection.start();

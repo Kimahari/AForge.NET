@@ -1,0 +1,13 @@
+<ng-container *ngIf="feed">
+    <div class="device-status">
+        <span> Device Status : {{feed.status}} </span>
+    </div>
+
+    <img *ngIf="feed.visable" [attr.src]="feed.image" #image />
+    <p class="text-muted"> current fps ({{feed.fps}}) {{feed.address}}</p>
+    <button [disabled]="sendingSignal" class="btn" [class.btn-success]="!feed.enabled" [class.btn-danger]="feed.enabled"
+        (click)="startStopFeed()">
+        {{feed.enabled ? 'Stop' : 'Start'}}
+    </button>
+
+</ng-container>

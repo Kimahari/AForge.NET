@@ -1,0 +1,15 @@
+:host {
+    position: relative;
+}
+
+img {
+    width: 100%;
+}
+
+p {
+    overflow: auto;
+    /* text-decoration: dashed; */
+    width: 100%;
+    text-overflow: ellipsis;
+    height: 20px;
+}

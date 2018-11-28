@@ -28,6 +28,7 @@
     <ProjectReference Include="..\DotNetCore\AForge.Core\AForge.Core.csproj" />
     <ProjectReference Include="..\DotNetCore\AForge.Video.Core\AForge.Video.Core.csproj" />
     <ProjectReference Include="..\DotNetCore\AForge.Vision.Core\AForge.Vision.Core.csproj" />
+    <ProjectReference Include="..\DotNetCore\Video.DirectShow.Core\Video.DirectShow.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,12 +6,24 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace AForge.Video.Core.App {
+
+    public enum DeviceType {
+        IPCamera,
+        InstalledDevice
+    }
+
     public class VideoFeed {
         public int ID { get; set; }
         public string Address { get; set; }
         public bool Enabled { get; set; } = false;
         public string Status { get; set; } = "Unkown";
         public int FrameRate { get; set; }
+        public DeviceType SourceType { get; internal set; }
+    }
+
+    public class AddDeviceRequest {
+        public string Address { get; set; }
+        public DeviceType Type { get; set; }
     }
 
     public static class FeedRepository {
@@ -23,45 +35,13 @@ namespace AForge.Video.Core.App {
         static FeedRepository() {
             DefaultBytes = System.IO.File.ReadAllBytes("default.jpeg");
 
-            var fps = "120";
+            //Feeds.Add(new VideoFeed {
+            //    ID = Feeds.Count + 1,
+            //    Address = $"http://10.0.75.1:30000/axis-cgi/mjpg/video.cgi?fps={1}",
+            //    Enabled = true
+            //});
 
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://10.0.75.1:30000/axis-cgi/mjpg/video.cgi?fps={1}",
-                Enabled = true
-            });
-
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://192.168.1.101:8080/video?fps={1}",
-                Enabled = true
-            });
-
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://192.168.1.101:8080/video?fps={5}",
-                Enabled = true
-            });
-
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://192.168.1.101:8080/video?fps={10}",
-                Enabled = true
-            });
-
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://192.168.1.101:8080/video?fps={30}",
-                Enabled = true
-            });
-
-            Feeds.Add(new VideoFeed {
-                ID = Feeds.Count + 1,
-                Address = $"http://192.168.1.101:8080/video?fps={60}",
-                Enabled = true
-            });
-
-            MotionDetector detector = new MotionDetector(
+            var detector = new MotionDetector(
                 new SimpleBackgroundModelingDetector(),
                 null);
 

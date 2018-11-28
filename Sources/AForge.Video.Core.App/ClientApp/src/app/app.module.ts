@@ -5,10 +5,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
+import { DeviceViewComponent } from './device-view/device-view.component';
+import { AddDeviceComponent } from './add-device/add-device.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DeviceViewComponent,
+    AddDeviceComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

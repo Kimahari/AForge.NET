@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>AForge.Video.DirectShow.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Video.DirectShow\CameraControlProperty.cs" Link="CameraControlProperty.cs" />
+    <Compile Include="..\..\Video.DirectShow\FileVideoSource.cs" Link="FileVideoSource.cs" />
+    <Compile Include="..\..\Video.DirectShow\FilterInfo.cs" Link="FilterInfo.cs" />
+    <Compile Include="..\..\Video.DirectShow\FilterInfoCollection.cs" Link="FilterInfoCollection.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IAMCameraControl.cs" Link="Internals\IAMCameraControl.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IAMCrossbar.cs" Link="Internals\IAMCrossbar.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IAMStreamConfig.cs" Link="Internals\IAMStreamConfig.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IAMVideoControl.cs" Link="Internals\IAMVideoControl.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IBaseFilter.cs" Link="Internals\IBaseFilter.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\ICaptureGraphBuilder2.cs" Link="Internals\ICaptureGraphBuilder2.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\ICreateDevEnum.cs" Link="Internals\ICreateDevEnum.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IEnumFilters.cs" Link="Internals\IEnumFilters.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IEnumPins.cs" Link="Internals\IEnumPins.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IFileSourceFilter.cs" Link="Internals\IFileSourceFilter.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IFilterGraph.cs" Link="Internals\IFilterGraph.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IFilterGraph2.cs" Link="Internals\IFilterGraph2.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IGraphBuilder.cs" Link="Internals\IGraphBuilder.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IMediaControl.cs" Link="Internals\IMediaControl.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IMediaEventEx.cs" Link="Internals\IMediaEventEx.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IMediaFilter.cs" Link="Internals\IMediaFilter.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IPersist.cs" Link="Internals\IPersist.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IPin.cs" Link="Internals\IPin.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IPropertyBag.cs" Link="Internals\IPropertyBag.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IReferenceClock.cs" Link="Internals\IReferenceClock.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\ISampleGrabber.cs" Link="Internals\ISampleGrabber.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\ISampleGrabberCB.cs" Link="Internals\ISampleGrabberCB.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\ISpecifyPropertyPages.cs" Link="Internals\ISpecifyPropertyPages.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\IVideoWindow.cs" Link="Internals\IVideoWindow.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\Structures.cs" Link="Internals\Structures.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\Tools.cs" Link="Internals\Tools.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\Uuids.cs" Link="Internals\Uuids.cs" />
+    <Compile Include="..\..\Video.DirectShow\Internals\Win32.cs" Link="Internals\Win32.cs" />
+    <Compile Include="..\..\Video.DirectShow\PhysicalConnectorType.cs" Link="PhysicalConnectorType.cs" />
+    <Compile Include="..\..\Video.DirectShow\Uuids.cs" Link="Uuids.cs" />
+    <Compile Include="..\..\Video.DirectShow\VideoCapabilities.cs" Link="VideoCapabilities.cs" />
+    <Compile Include="..\..\Video.DirectShow\VideoCaptureDevice.cs" Link="VideoCaptureDevice.cs" />
+    <Compile Include="..\..\Video.DirectShow\VideoInput.cs" Link="VideoInput.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\Video.DirectShow\Icons\camera.png" Link="Images\camera.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Internals\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AForge.Video.Core\AForge.Video.Core.csproj" />
+  </ItemGroup>
+
+</Project>
